@@ -19,6 +19,7 @@ import { setThemeMode } from "../../redux/features/themeModeSlice";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
+import Sidebar from "./Sidebar";
 const ScrollAppBar = ({ children, window }) => {
   const { themeMode } = useSelector((state) => state.themeMode);
 
@@ -56,8 +57,10 @@ const Topbar = () => {
       themeMode === themeModes.dark ? themeModes.light : themeModes.dark;
     dispatch(setThemeMode(theme));
   };
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   return (
     <>
+      <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar}/>
       <ScrollAppBar>
         <AppBar elevation={0} sx={{ zIndex: 9999 }}>
           <Toolbar
@@ -67,6 +70,7 @@ const Topbar = () => {
               <IconButton
                 color="inherit"
                 sx={{ mr: 2, display: { md: "none" } }}
+                onClick={toggleSidebar}
               >
                 <MenuIcon />
               </IconButton>
@@ -105,8 +109,7 @@ const Topbar = () => {
                   </Button>
                 );
               })}
-              <IconButton sx={{ color: "inherit" }}
-              onClick={onSwitchTheme}>
+              <IconButton sx={{ color: "inherit" }} onClick={onSwitchTheme}>
                 {themeMode === themeModes.dark && <DarkModeOutlinedIcon />}
                 {themeMode === themeModes.light && <WbSunnyOutlinedIcon />}
               </IconButton>
@@ -114,7 +117,17 @@ const Topbar = () => {
             {/* main menu */}
 
             {/* user menu */}
-            <UserMenu />
+            <Stack spacing={3} direction={"row"} alignItems={"center"}>
+              {!user && (
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch(setAuthModalOpen(true))}
+                >
+                  sign in
+                </Button>
+              )}
+            </Stack>
+            {user && <UserMenu />}
             {/* user menu */}
           </Toolbar>
         </AppBar>

@@ -54,6 +54,14 @@ const UserMenu = () => {
                 />
               </ListItemButton>
             ))}
+            <ListItemButton
+            sx={{borderRadius:"10px"}}
+            onClick={()=>dispatch(setUser(null))}>
+              <ListItemIcon><LogoutOutlinedIcon /><Typography textTransform={"uppercase"}>
+                      {"sign out"}
+                    </Typography></ListItemIcon>
+
+            </ListItemButton>
           </Menu>
         </>
       )}
