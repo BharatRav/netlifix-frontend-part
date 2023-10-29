@@ -10,6 +10,13 @@ import MainLayout from "./components/layout/MainLayout";
 import routes from "./routes/routes";
 import PageWrapper from "./components/common/PageWrapper";
 import HomePage from "./pages/HomePage";
+import "react-toastify/dist/ReactToastify.css";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const App = () => {
   const { themeMode } = useSelector((state) => state.themeMode);
@@ -33,7 +40,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            {routes?.map((route, idx) => (
+            {routes?.map((route, idx) =>
               route.index ? (
                 <Route
                   index
@@ -46,7 +53,7 @@ const App = () => {
                     ) : (
                       route.element
                     )
-                    }
+                  }
                 />
               ) : (
                 <Route
@@ -63,7 +70,7 @@ const App = () => {
                   }
                 />
               )
-            ))}
+            )}
           </Route>
         </Routes>
       </BrowserRouter>

@@ -12,7 +12,7 @@ const personApi = {
         personEndpoints.detail({ personId })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },
@@ -22,7 +22,7 @@ const personApi = {
         personEndpoints.medias({ personId })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },

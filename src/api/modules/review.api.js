@@ -18,7 +18,7 @@ const reviewApi = {
         content,
       });
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },
@@ -28,7 +28,7 @@ const reviewApi = {
         reviewEndpoints.remove({ reviewId })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },
@@ -36,7 +36,7 @@ const reviewApi = {
     try {
       const response = await privateClient.post(reviewEndpoints.list);
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },

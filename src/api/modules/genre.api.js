@@ -11,7 +11,7 @@ const genreApi = {
         genreEndpoints.list({ mediaType })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },

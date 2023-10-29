@@ -16,7 +16,7 @@ const mediaApi = {
         mediaEndpoints.list({ mediaType, mediaCategory, page })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },
@@ -26,7 +26,7 @@ const mediaApi = {
         mediaEndpoints.detail({ mediaType, mediaId })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },
@@ -36,7 +36,7 @@ const mediaApi = {
         mediaEndpoints.search({ mediaType, query, page })
       );
       return { response };
-    } catch (error) {
+    } catch (err) {
       return { err };
     }
   },

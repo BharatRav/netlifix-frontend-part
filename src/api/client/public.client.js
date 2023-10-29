@@ -2,9 +2,9 @@ import axios from "axios";
 import queryString from "query-string";
 
 const PORT = 9096;
-// const baseURL = `http://127.0.0.1:${PORT}/api/v1/`;
+const baseURL = `http://127.0.0.1:${PORT}/api/v1/`;
 // const baseURL = `https://netlifix-fullstack.vercel.app/api/v1/`; frontend
-const baseURL= `https://neltifix.onrender.com/api/v1/`
+// const baseURL= `https://neltifix.onrender.com/api/v1/`
 
 const publicClient = axios.create({
   baseURL,
@@ -16,7 +16,7 @@ const publicClient = axios.create({
 publicClient.interceptors.request.use(async (config) => {
   return {
     ...config,
-    Headers: {
+    headers: {
       "Content-Type": "application/json",
     },
   };
