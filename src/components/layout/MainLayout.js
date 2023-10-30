@@ -54,7 +54,7 @@ const MainLayout = () => {
           <Outlet />
         </Box>
         {/* main */}
-        <CirculerRate/>
+        {/* <CirculerRate/> */}
       </Box>
 
       {/* footer */}
