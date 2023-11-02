@@ -3,7 +3,7 @@
 import { ThemeProvider } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import themeConfigs from "./configs/theme.configs";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
@@ -38,6 +38,7 @@ const App = () => {
 
       {/* app routes */}
       <BrowserRouter>
+      {toast("please wait our api take time for first time or reload page!")}
         <Routes>
           <Route path="/" element={<MainLayout />}>
             {routes?.map((route, idx) =>
