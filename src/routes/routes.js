@@ -55,7 +55,7 @@ const routes = [
     state: "reviews",
   },
   { path: "/:mediaType", element: <MediaList /> },
-  { path: "/:mediaType/:mediaid", element: <MediaDetail /> },
+  { path: "/:mediaType/:mediaId", element: <MediaDetail /> },
 ];
 
 export default routes;

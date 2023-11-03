@@ -38,7 +38,7 @@ const App = () => {
 
       {/* app routes */}
       <BrowserRouter>
-      {toast("please wait our api take time for first time or reload page!")}
+      {toast("please wait max 2 mins our api take time for first time or reload page!")}
         <Routes>
           <Route path="/" element={<MainLayout />}>
             {routes?.map((route, idx) =>
