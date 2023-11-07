@@ -27,6 +27,7 @@ import { setAuthModalOpen } from "../redux/features/authModalSlice";
 import { addFavorite, removeFavorite } from "../redux/features/userSlice";
 import { toast } from "react-toastify";
 import CastSlide from "../components/common/CastSlide";
+import MediaVideosSlide from "../components/common/MediaVideosSlide";
 const MediaDetail = () => {
   const { mediaType, mediaId } = useParams();
 
@@ -63,6 +64,7 @@ const MediaDetail = () => {
     if (onRequest) return;
 
     if (isFavorite) {
+      onRemoveFavorite();
       return;
     }
     setOnRequest(true);
@@ -84,6 +86,30 @@ const MediaDetail = () => {
       dispatch(addFavorite(response));
       setIsFavorite(true);
       toast.success("Add favorite success");
+    }
+  };
+  const onRemoveFavorite = async () => {
+    if (onRequest) return;
+
+    setOnRequest(true);
+
+    const favorite = listFavorites.find(
+      (e) => e.mediaId.toString() === media.id.toString()
+    );
+
+    console.log(favorite);
+
+    const { response, err } = await favoriteApi.remove({
+      favoriteId: favorite.id,
+    });
+    setOnRequest(false);
+
+    if (err) toast.error(err.message);
+
+    if (response) {
+      dispatch(removeFavorite(favorite));
+      setIsFavorite(false);
+      toast.success("Remove favorite success");
     }
   };
   return media ? (
@@ -215,6 +241,14 @@ const MediaDetail = () => {
           </Box>
         </Box>
         {/* media content */}
+
+        {/* media video */}
+        <div ref={videoRef} style={{ paddingTop: "2rem" }}>
+          <Container header={"Videos"}>
+            <MediaVideosSlide videos={media.videos.results} />
+          </Container>
+        </div>
+        {/* media video */}
       </Box>
     </>
   ) : null;
