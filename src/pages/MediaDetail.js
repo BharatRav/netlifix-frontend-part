@@ -26,6 +26,7 @@ import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
 import { setAuthModalOpen } from "../redux/features/authModalSlice";
 import { addFavorite, removeFavorite } from "../redux/features/userSlice";
 import { toast } from "react-toastify";
+import CastSlide from "../components/common/CastSlide";
 const MediaDetail = () => {
   const { mediaType, mediaId } = useParams();
 
@@ -117,8 +118,65 @@ const MediaDetail = () => {
                 }`}</Typography>
                 {/* title */}
                 {/* rate and genres */}
-                <Stack direction={"row"}></Stack>
+                <Stack direction={"row"} spacing={1}>
+                  {/* rate */}
+                  <CirculerRate value={media.vote_average} />
+                  {/* rate */}
+                  <Divider orientation="vertical" />
+                  {/* genres */}
+                  {genres.map((genre, index) => (
+                    <Chip
+                      label={genre.name}
+                      variant="filled"
+                      color="primary"
+                      key={index}
+                    />
+                  ))}
+                  {/* genres */}
+                </Stack>
                 {/* rate and genres */}
+                {/* overview */}
+                <Typography
+                  variant="body1"
+                  sx={{ ...uiConfigs.style.typoLines(5) }}
+                >
+                  {media.overview}
+                </Typography>
+                {/* overview */}
+                {/* button */}
+                <Stack direction={"row"} spacing={1}>
+                  <LoadingButton
+                    variant="text"
+                    sx={{
+                      width: "max-content",
+                      "& .MuiButton-startIcon": { marginRight: "0" },
+                    }}
+                    size="large"
+                    startIcon={
+                      isFavorite ? (
+                        <FavoriteIcon />
+                      ) : (
+                        <FavoriteBorderOutlinedIcon />
+                      )
+                    }
+                    loadingPosition="start"
+                    loading={onRequest}
+                    // onClick={}
+                  />
+                  <Button
+                    variant="contained"
+                    sx={{ width: "max-content" }}
+                    size="large"
+                    startIcon={<PlayArrowIcon />}
+                    onClick={() => videoRef.current.scrollIntoView()}
+                  >watch now</Button>
+                </Stack>
+                {/* button */}
+                {/* cast */}
+                <Container header={"Cast"}>
+                  <CastSlide casts={media.credit.cast} />
+                </Container>
+                {/* cast */}
               </Stack>
             </Box>
             {/* media info */}

@@ -20,6 +20,7 @@ import "swiper/css/scrollbar";
 
 const App = () => {
   const { themeMode } = useSelector((state) => state.themeMode);
+  {toast("please wait max 2 mins our api take time for first time or reload page!")}
   return (
     <ThemeProvider theme={themeConfigs.custom({ mode: themeMode })}>
       {/* config toastify */}
@@ -38,7 +39,7 @@ const App = () => {
 
       {/* app routes */}
       <BrowserRouter>
-      {toast("please wait max 2 mins our api take time for first time or reload page!")}
+      
         <Routes>
           <Route path="/" element={<MainLayout />}>
             {routes?.map((route, idx) =>
