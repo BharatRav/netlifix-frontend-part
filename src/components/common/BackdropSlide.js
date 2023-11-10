@@ -7,7 +7,7 @@ import NavigationSwiper from './NavigationSwiper'
 const BackdropSlide = ({backdrops}) => {
   return (
 <NavigationSwiper>
-    {backdrops.slice(0,10).map((item,index)=>(
+    {[...backdrops].slice(0,10).map((item,index)=>(
         <SwiperSlide key={index}>
             <Box sx={{
                 paddingTop:"60%",

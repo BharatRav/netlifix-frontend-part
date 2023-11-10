@@ -7,7 +7,7 @@ import AutoSwiper from './AutoSwiper'
 const PosterSlide = ({posters}) => {
   return (
 <AutoSwiper>
-    {posters.slice(0,10).map((item,index)=>(
+    {[...posters].slice(0,10).map((item,index)=>(
         <SwiperSlide key={index}>
             <Box sx={{
                 paddingTop:"60%",

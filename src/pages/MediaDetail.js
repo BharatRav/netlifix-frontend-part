@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -8,30 +7,31 @@ import {
   Button,
   Chip,
   Divider,
-  STack,
   Stack,
   Typography,
 } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import tmdbConfigs from "../api/configs/tmdb.configs";
+import favoriteApi from "../api/modules/favorite.api";
+import mediaApi from "../api/modules/media.api";
+import BackdropSlide from "../components/common/BackdropSlide";
+import CastSlide from "../components/common/CastSlide";
 import CirculerRate from "../components/common/CirculerRate";
 import Container from "../components/common/Container";
 import ImageHeader from "../components/common/ImageHeader";
-import uiConfigs from "../configs/ui.configs";
-import tmdbConfigs from "../api/configs/tmdb.configs";
-import mediaApi from "../api/modules/media.api";
-import favoriteApi from "../api/modules/favorite.api";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
-import { setAuthModalOpen } from "../redux/features/authModalSlice";
-import { addFavorite, removeFavorite } from "../redux/features/userSlice";
-import { toast } from "react-toastify";
-import CastSlide from "../components/common/CastSlide";
+import MediaSlide from "../components/common/MediaSlide";
 import MediaVideosSlide from "../components/common/MediaVideosSlide";
-import BackdropSlide from "../components/common/BackdropSlide";
 import PosterSlide from "../components/common/PosterSlide";
 import RecommendSlide from "../components/common/RecommendSlide";
-import MediaSlide from "../components/common/MediaSlide";
+import uiConfigs from "../configs/ui.configs";
+import { setAuthModalOpen } from "../redux/features/authModalSlice";
+import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
+import { addFavorite, removeFavorite } from "../redux/features/userSlice";
+import MediaReview from "../components/common/MediaReview";
 const MediaDetail = () => {
   const { mediaType, mediaId } = useParams();
 
@@ -249,7 +249,7 @@ const MediaDetail = () => {
         {/* media video */}
         <div ref={videoRef} style={{ paddingTop: "2rem" }}>
           <Container header={"Videos"}>
-            <MediaVideosSlide videos={media.videos.results.splice(0, 5)} />
+            <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} />
           </Container>
         </div>
         {/* media video */}
@@ -269,7 +269,7 @@ const MediaDetail = () => {
         {/* media posters */}
 
         {/* media review */}
-
+        <MediaReview reviews={media.reviews}  media={media} mediaType={mediaType}/>
         {/* media review */}
 
         {/* media recommendation */}
