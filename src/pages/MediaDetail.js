@@ -2,14 +2,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { LoadingButton } from "@mui/lab";
-import {
-  Box,
-  Button,
-  Chip,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Chip, Divider, Stack, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -44,6 +37,7 @@ const MediaDetail = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const getMedia = async () => {
       dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getDetail({
@@ -269,7 +263,11 @@ const MediaDetail = () => {
         {/* media posters */}
 
         {/* media review */}
-        <MediaReview reviews={media.reviews}  media={media} mediaType={mediaType}/>
+        <MediaReview
+          reviews={media.reviews}
+          media={media}
+          mediaType={mediaType}
+        />
         {/* media review */}
 
         {/* media recommendation */}
