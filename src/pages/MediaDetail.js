@@ -95,7 +95,6 @@ const MediaDetail = () => {
       (e) => e.mediaId.toString() === media.id.toString()
     );
 
-    console.log(favorite);
 
     const { response, err } = await favoriteApi.remove({
       favoriteId: favorite.id,

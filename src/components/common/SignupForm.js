@@ -33,6 +33,7 @@ const SignupForm = ({ switchAuthState }) => {
         .min(8, "displayName minimum 8 characters")
         .required("displayName is required"),
       confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password")], "confirmPassword is not match")
         .min(8, "confirmPassword minimum 8 characters")
         .required("confirmPassword is required"),
     }),
@@ -85,7 +86,9 @@ const SignupForm = ({ switchAuthState }) => {
             signinForm.touched.displayName &&
             signinForm.errors.displayName !== undefined
           }
-          helperText={signinForm.touched.displayName && signinForm.errors.displayName}
+          helperText={
+            signinForm.touched.displayName && signinForm.errors.displayName
+          }
         />
         <TextField
           type="password"
@@ -101,21 +104,25 @@ const SignupForm = ({ switchAuthState }) => {
             signinForm.errors.password !== undefined
           }
           helperText={signinForm.touched.password && signinForm.errors.password}
-        /><TextField
-        type="confirmPassword"
-        placeholder="confirm password"
-        name="confirmPassword"
-        id="confirmPassword"
-        fullWidth
-        value={signinForm.values.confirmPassword}
-        onChange={signinForm.handleChange}
-        color="success"
-        error={
-          signinForm.touched.confirmPassword &&
-          signinForm.errors.confirmPassword !== undefined
-        }
-        helperText={signinForm.touched.confirmPassword && signinForm.errors.confirmPassword}
-      />
+        />
+        <TextField
+          type="confirmPassword"
+          placeholder="confirm password"
+          name="confirmPassword"
+          id="confirmPassword"
+          fullWidth
+          value={signinForm.values.confirmPassword}
+          onChange={signinForm.handleChange}
+          color="success"
+          error={
+            signinForm.touched.confirmPassword &&
+            signinForm.errors.confirmPassword !== undefined
+          }
+          helperText={
+            signinForm.touched.confirmPassword &&
+            signinForm.errors.confirmPassword
+          }
+        />
       </Stack>
       <LoadingButton
         type="submit"

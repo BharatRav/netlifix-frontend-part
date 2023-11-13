@@ -1,4 +1,3 @@
-import { Try } from "@mui/icons-material";
 import privateClient from "../client/private.client";
 
 const reviewEndpoints = {
@@ -34,7 +33,7 @@ const reviewApi = {
   },
   getList: async () => {
     try {
-      const response = await privateClient.post(reviewEndpoints.list);
+      const response = await privateClient.get(reviewEndpoints.list);
       return { response };
     } catch (err) {
       return { err };

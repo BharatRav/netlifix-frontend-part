@@ -3,7 +3,6 @@ import { Box, useTheme } from "@mui/material";
 import uiConfigs from "../../configs/ui.configs";
 
 const ImageHeader = ({ imgPath }) => {
-    console.log(imgPath,"bb")
   const theme = useTheme();
   return (
      <Box sx={{
